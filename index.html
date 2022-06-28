@@ -190,6 +190,7 @@
                     "ev_fing": true,
                     "ev_spirit": true,
                     "ev_freeze": true,
+                    "ev_orb": true,
                 },
             },
             "Moroi": {
@@ -218,7 +219,7 @@
             const checked = evidences.filter( ev => document.getElementById( ev ).checked );
             console.log( "test", checked );
             let possibleGhosts = Object.keys( ghosts );
-            if( checked.length > 3 ) {
+            if( checked.length > 4 ) {
                 possibleGhosts = [];
             }
             else if( checked.length > 0 ) {
