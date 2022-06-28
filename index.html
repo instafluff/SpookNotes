@@ -18,19 +18,19 @@
         </p>
         <br/>
         <input type="checkbox" id="ev_emf" name="ev_emf" value="EMF Lv" onclick="updateGhosts()">
-        <label for="ev_emf" class="dark:text-white"> EMF Lv5</label><br>
+        <label id="ev_emf_label" for="ev_emf" class="dark:text-white"> EMF Lv5</label><br>
         <input type="checkbox" id="ev_dots" name="ev_dots" value="DOTS Projector" onclick="updateGhosts()">
-        <label for="ev_dots" class="dark:text-white"> DOTS Projector</label><br>
+        <label id="ev_dots_label" for="ev_dots" class="dark:text-white"> DOTS Projector</label><br>
         <input type="checkbox" id="ev_fing" name="ev_fing" value="Fingerprints" onclick="updateGhosts()">
-        <label for="ev_fing" class="dark:text-white"> Fingerprints</label><br>
+        <label id="ev_fing_label" for="ev_fing" class="dark:text-white"> Fingerprints</label><br>
         <input type="checkbox" id="ev_orb" name="ev_orb" value="Ghost Orb" onclick="updateGhosts()">
-        <label for="ev_orb" class="dark:text-white"> Ghost Orb</label><br>
+        <label id="ev_orb_label" for="ev_orb" class="dark:text-white"> Ghost Orb</label><br>
         <input type="checkbox" id="ev_write" name="ev_write" value="Ghost Writing" onclick="updateGhosts()">
-        <label for="ev_write" class="dark:text-white"> Ghost Writing</label><br>
+        <label id="ev_write_label" for="ev_write" class="dark:text-white"> Ghost Writing</label><br>
         <input type="checkbox" id="ev_spirit" name="ev_spirit" value="Spirit Box" onclick="updateGhosts()">
-        <label for="ev_spirit" class="dark:text-white"> Spirit Box</label><br>
+        <label id="ev_spirit_label" for="ev_spirit" class="dark:text-white"> Spirit Box</label><br>
         <input type="checkbox" id="ev_freeze" name="ev_freeze" value="Freezing" onclick="updateGhosts()">
-        <label for="ev_freeze" class="dark:text-white"> Freezing</label><br>
+        <label id="ev_freeze_label" for="ev_freeze" class="dark:text-white"> Freezing</label><br>
         <p id="status-text" class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
             Possible Ghosts Here
         </p>
@@ -225,6 +225,29 @@
                 possibleGhosts = possibleGhosts.filter( g => checked.every( ev => ghosts[ g ].evidence[ ev ] ) );
                 console.log( possibleGhosts );
             }
+
+            // Gray out evidence that is not possible from current potential ghosts
+            const impossibleEvidences = {};
+            evidences.forEach( ev => {
+                impossibleEvidences[ ev ] = true;
+            });
+            const possibleEvidences = {};
+            possibleGhosts.forEach( g => {
+                Object.keys( ghosts[ g ].evidence ).forEach( ev => {
+                    possibleEvidences[ ev ] = true;
+                    impossibleEvidences[ ev ] = false;
+                });
+            });
+            Object.keys( impossibleEvidences ).forEach( ev => {
+                if( impossibleEvidences[ ev ] && !checked.includes( ev ) ) {
+                    document.getElementById( ev ).disabled = true;
+                    document.getElementById( `${ev}_label` ).classList.add( "line-through" );
+                }
+                else {
+                    document.getElementById( ev ).disabled = false;
+                    document.getElementById( `${ev}_label` ).classList.remove( "line-through" );
+                }
+            });
             document.getElementById( "status-text" ).textContent = possibleGhosts.join( ", " );
         }
     </script>
