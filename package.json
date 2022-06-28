@@ -1,0 +1,35 @@
+{
+  "name": "spooknotes",
+  "version": "1.0.0",
+  "description": "Fluffiest Ghost Tracking App for Phasmophobia",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "npx tailwindcss -i ./src/main.css -o ./web/main.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instafluff/SpookNotes.git"
+  },
+  "keywords": [
+    "Instafluff",
+    "Phasmophobia",
+    "game",
+    "ghost",
+    "tracking",
+    "app"
+  ],
+  "author": "Instafluff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/instafluff/SpookNotes/issues"
+  },
+  "homepage": "https://github.com/instafluff/SpookNotes#readme",
+  "dependencies": {
+    "webwebweb": "^1.4.10"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.4"
+  }
+}

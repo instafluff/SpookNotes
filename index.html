@@ -1,0 +1,232 @@
+<!doctype html>
+<html class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+        };
+    </script>
+</head>
+<body>
+    <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-4 ring-1 ring-slate-900/5 shadow-xl">
+        <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Spook Notes</h3>
+        <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+            Fluffiest Way to Determine The Ghost!
+        </p>
+        <br/>
+        <input type="checkbox" id="ev_emf" name="ev_emf" value="EMF Lv" onclick="updateGhosts()">
+        <label for="ev_emf" class="dark:text-white"> EMF Lv5</label><br>
+        <input type="checkbox" id="ev_dots" name="ev_dots" value="DOTS Projector" onclick="updateGhosts()">
+        <label for="ev_dots" class="dark:text-white"> DOTS Projector</label><br>
+        <input type="checkbox" id="ev_fing" name="ev_fing" value="Fingerprints" onclick="updateGhosts()">
+        <label for="ev_fing" class="dark:text-white"> Fingerprints</label><br>
+        <input type="checkbox" id="ev_orb" name="ev_orb" value="Ghost Orb" onclick="updateGhosts()">
+        <label for="ev_orb" class="dark:text-white"> Ghost Orb</label><br>
+        <input type="checkbox" id="ev_write" name="ev_write" value="Ghost Writing" onclick="updateGhosts()">
+        <label for="ev_write" class="dark:text-white"> Ghost Writing</label><br>
+        <input type="checkbox" id="ev_spirit" name="ev_spirit" value="Spirit Box" onclick="updateGhosts()">
+        <label for="ev_spirit" class="dark:text-white"> Spirit Box</label><br>
+        <input type="checkbox" id="ev_freeze" name="ev_freeze" value="Freezing" onclick="updateGhosts()">
+        <label for="ev_freeze" class="dark:text-white"> Freezing</label><br>
+        <p id="status-text" class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+            Possible Ghosts Here
+        </p>
+    </div>
+    <script>
+        const evidences = [ "ev_emf", "ev_dots", "ev_fing", "ev_orb", "ev_write", "ev_spirit", "ev_freeze" ];
+        const ghosts = {
+            "Spirit": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_write": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Wraith": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_dots": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Phantom": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_fing": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Poltergeist": {
+                "evidence": {
+                    "ev_fing": true,
+                    "ev_write": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Banshee": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_fing": true,
+                    "ev_orb": true,
+                },
+            },
+            "Jinn": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_fing": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Mare": {
+                "evidence": {
+                    "ev_orb": true,
+                    "ev_write": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Revenant": {
+                "evidence": {
+                    "ev_orb": true,
+                    "ev_write": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Shade": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_write": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Spirit": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_write": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Demon": {
+                "evidence": {
+                    "ev_fing": true,
+                    "ev_write": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Yurei": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_orb": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Oni": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_dots": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Yokai": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_orb": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Hantu": {
+                "evidence": {
+                    "ev_fing": true,
+                    "ev_orb": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Goryo": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_dots": true,
+                    "ev_fing": true,
+                },
+            },
+            "Myling": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_fing": true,
+                    "ev_write": true,
+                },
+            },
+            "Onryo": {
+                "evidence": {
+                    "ev_orb": true,
+                    "ev_spirit": true,
+                    "ev_freeze": true,
+                },
+            },
+            "The Twins": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_spirit": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Raiju": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_dots": true,
+                    "ev_orb": true,
+                },
+            },
+            "Obake": {
+                "evidence": {
+                    "ev_emf": true,
+                    "ev_fing": true,
+                    "ev_orb": true,
+                },
+            },
+            "The Mimic": {
+                "evidence": {
+                    "ev_fing": true,
+                    "ev_spirit": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Moroi": {
+                "evidence": {
+                    "ev_write": true,
+                    "ev_spirit": true,
+                    "ev_freeze": true,
+                },
+            },
+            "Deogen": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_write": true,
+                    "ev_spirit": true,
+                },
+            },
+            "Thaye": {
+                "evidence": {
+                    "ev_dots": true,
+                    "ev_orb": true,
+                    "ev_write": true,
+                },
+            },
+        };
+        function updateGhosts() {
+            const checked = evidences.filter( ev => document.getElementById( ev ).checked );
+            console.log( "test", checked );
+            let possibleGhosts = Object.keys( ghosts );
+            if( checked.length > 3 ) {
+                possibleGhosts = [];
+            }
+            else if( checked.length > 0 ) {
+                possibleGhosts = possibleGhosts.filter( g => checked.every( ev => ghosts[ g ].evidence[ ev ] ) );
+                console.log( possibleGhosts );
+            }
+            document.getElementById( "status-text" ).textContent = possibleGhosts.join( ", " );
+        }
+    </script>
+</body>
+</html>
