@@ -34,6 +34,8 @@
         <p id="status-text" class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
             Possible Ghosts Here
         </p>
+        <p id="timer-text">0 sec</p>
+        <button  id="timerButton" class="btn btn-primary" onclick="startTimer()">Start Timer</button>
     </div>
     <script>
         const evidences = [ "ev_emf", "ev_dots", "ev_fing", "ev_orb", "ev_write", "ev_spirit", "ev_freeze" ];
@@ -250,6 +252,30 @@
                 }
             });
             document.getElementById( "status-text" ).textContent = possibleGhosts.join( ", " );
+        }
+
+        let startTime = null;
+        let timerInterval = null;
+        let isTimerTicking = false;
+        function startTimer() {
+          if( isTimerTicking ) {
+            isTimerTicking = false;
+            if( timerInterval ) {
+              clearInterval( timerInterval );
+            }
+            document.getElementById( "timerButton" ).textContent = "Start Timer";
+          }
+          else {
+            isTimerTicking = true;
+            startTime = new Date();
+            timerInterval = setInterval( () => {
+              const currTime = new Date();
+              const timeDiffInMs = currTime - startTime;
+              const timeInSeconds = Math.floor( timeDiffInMs / 1000 );
+              document.getElementById( "timer-text" ).textContent = `${timeInSeconds} secs`;
+            }, 100 );
+            document.getElementById( "timerButton" ).textContent = "Stop Timer";
+          }
         }
     </script>
 </body>
