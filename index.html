@@ -3,39 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-        };
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-    <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-4 ring-1 ring-slate-900/5 shadow-xl">
-        <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Spook Notes</h3>
-        <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
-            Fluffiest Way to Determine The Ghost!
-        </p>
-        <br/>
-        <input type="checkbox" id="ev_emf" name="ev_emf" value="EMF Lv" onclick="updateGhosts()">
-        <label id="ev_emf_label" for="ev_emf" class="dark:text-white"> EMF Lv5</label><br>
-        <input type="checkbox" id="ev_dots" name="ev_dots" value="DOTS Projector" onclick="updateGhosts()">
-        <label id="ev_dots_label" for="ev_dots" class="dark:text-white"> DOTS Projector</label><br>
-        <input type="checkbox" id="ev_fing" name="ev_fing" value="Fingerprints" onclick="updateGhosts()">
-        <label id="ev_fing_label" for="ev_fing" class="dark:text-white"> Fingerprints</label><br>
-        <input type="checkbox" id="ev_orb" name="ev_orb" value="Ghost Orb" onclick="updateGhosts()">
-        <label id="ev_orb_label" for="ev_orb" class="dark:text-white"> Ghost Orb</label><br>
-        <input type="checkbox" id="ev_write" name="ev_write" value="Ghost Writing" onclick="updateGhosts()">
-        <label id="ev_write_label" for="ev_write" class="dark:text-white"> Ghost Writing</label><br>
-        <input type="checkbox" id="ev_spirit" name="ev_spirit" value="Spirit Box" onclick="updateGhosts()">
-        <label id="ev_spirit_label" for="ev_spirit" class="dark:text-white"> Spirit Box</label><br>
-        <input type="checkbox" id="ev_freeze" name="ev_freeze" value="Freezing" onclick="updateGhosts()">
-        <label id="ev_freeze_label" for="ev_freeze" class="dark:text-white"> Freezing</label><br>
-        <p id="status-text" class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
-            Possible Ghosts Here
-        </p>
-        <p id="timer-text">0 sec</p>
-        <button  id="timerButton" class="btn btn-primary" onclick="startTimer()">Start Timer</button>
+    <div class="container">
+        <!-- Title of the page  -->
+        <h1 class="display-1 mt-4">Spook Notes</h1>
+        <p class=""> Fluffiest Way to Determine The Ghost! </p>
+        <!-- Ghost finding card  -->
+        <div class="card text-bg-dark mt-3">
+            <div class="card-header">
+                <h3 class="card-title">Evidence helper</h3>
+            </div>
+            <div class="card-body">
+                <input type="checkbox" id="ev_emf" name="ev_emf" value="EMF Lv" onclick="updateGhosts()">
+                <label id="ev_emf_label" for="ev_emf" class="dark:text-white"> EMF Lv5</label><br>
+                <input type="checkbox" id="ev_dots" name="ev_dots" value="DOTS Projector" onclick="updateGhosts()">
+                <label id="ev_dots_label" for="ev_dots" class="dark:text-white"> DOTS Projector</label><br>
+                <input type="checkbox" id="ev_fing" name="ev_fing" value="Fingerprints" onclick="updateGhosts()">
+                <label id="ev_fing_label" for="ev_fing" class="dark:text-white"> Fingerprints</label><br>
+                <input type="checkbox" id="ev_orb" name="ev_orb" value="Ghost Orb" onclick="updateGhosts()">
+                <label id="ev_orb_label" for="ev_orb" class="dark:text-white"> Ghost Orb</label><br>
+                <input type="checkbox" id="ev_write" name="ev_write" value="Ghost Writing" onclick="updateGhosts()">
+                <label id="ev_write_label" for="ev_write" class="dark:text-white"> Ghost Writing</label><br>
+                <input type="checkbox" id="ev_spirit" name="ev_spirit" value="Spirit Box" onclick="updateGhosts()">
+                <label id="ev_spirit_label" for="ev_spirit" class="dark:text-white"> Spirit Box</label><br>
+                <input type="checkbox" id="ev_freeze" name="ev_freeze" value="Freezing" onclick="updateGhosts()">
+                <label id="ev_freeze_label" for="ev_freeze" class="dark:text-white"> Freezing</label><br>
+                <p id="status-text" class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                    Possible Ghosts Here
+                </p>
+                
+            </div>
+        </div>
+        <!-- Fingerprints timer card -->
+        <div class="card text-bg-dark mt-3">
+            <div class="card-header">
+                <h3 class="card-title">Fingerprints Timer</h3>
+            </div>
+            <div class="card-body">
+                <p id="timer-text">0 sec</p>
+                <button  id="timerButton" class="btn btn-primary" onclick="startTimer()">Start Timer</button>
+            </div>
+        </div>
+        
     </div>
     <script>
         const evidences = [ "ev_emf", "ev_dots", "ev_fing", "ev_orb", "ev_write", "ev_spirit", "ev_freeze" ];
@@ -278,5 +289,7 @@
           }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </body>
 </html>
