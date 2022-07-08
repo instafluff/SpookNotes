@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="dark">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,11 +255,11 @@
             Object.keys( impossibleEvidences ).forEach( ev => {
                 if( impossibleEvidences[ ev ] && !checked.includes( ev ) ) {
                     document.getElementById( ev ).disabled = true;
-                    document.getElementById( `${ev}_label` ).classList.add( "line-through" );
+                    document.getElementById( `${ev}_label` ).classList.add( "text-decoration-line-through" );
                 }
                 else {
                     document.getElementById( ev ).disabled = false;
-                    document.getElementById( `${ev}_label` ).classList.remove( "line-through" );
+                    document.getElementById( `${ev}_label` ).classList.remove( "text-decoration-line-through" );
                 }
             });
             document.getElementById( "status-text" ).textContent = possibleGhosts.join( ", " );
